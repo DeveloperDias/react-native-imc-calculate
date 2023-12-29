@@ -1,21 +1,15 @@
 import React from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text } from "react-native"
+import { FontAwesome } from '@expo/vector-icons'; 
+
+import styles from "../Title/styles";
 
 export default function Title() {
   return(
-    <View>
-      <Text style={styles.text}>OneBit<Text style={{color: "#6EB385"}}>Health</Text></Text>
+    <View style={styles.container}>
+      <Text style={styles.text}>OneBit<Text style={{color: "#0F9D58"}}>Health</Text></Text>
+      <FontAwesome style={styles.icon} name="heartbeat" size={30} color="#4285F4" />
     </View>
   )
 }
 
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 30,
-    fontWeight: "bold",
-    color: "#C4768B",
-    backgroundColor: "#333",
-    padding: 20,
-    borderRadius: 10
-  }
-})

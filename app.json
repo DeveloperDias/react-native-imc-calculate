@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "168f4f25-0792-435b-a6b7-35e4f29729f6"
+      }
+    },
+    "owner": "diasmp3"
   }
 }

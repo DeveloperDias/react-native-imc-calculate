@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Button } from "react-native";
 import ResultImc from "./ResultIMC";
 
 export default Form = () => {
@@ -8,27 +8,29 @@ export default Form = () => {
   const [height, setHeight] = useState(null)
   const [weight, setWeight] = useState(null)
   const [messageImc, setMessageImc] = useState("Preencha o peso e altura")
-  const [imc, setImc] = useState(null)
+  const [imc, setImc] = useState(0)
   const [textButton, setTextButton] = useState("calcular")
 
   function imcCalculate() {
-    return setImc((IMC) => {
-      IMC = (height * height / weight).toFixed(2)
-    })
+    setImc((weight / (height**2)).toFixed(2))
   }
 
   function validateImc() {
-    if (weight !== null && height !== null) {
+    if (weight !== "" && height !== "" && weight !== null && height !== null) {
       imcCalculate()
-
-      setHeight(null)
-      setWeight(null)
-
       setMessageImc(`Seu IMC é igual a ${imc}`)
       setTextButton("Calcular novamente")
+      setHeight(null)
+      setWeight(null)
       return
     }
-    setImc(null)
+    setTextButton("Calcular")
+    setMessageImc("Preencha o peso e altura")
+  }
+
+  function clearInputs() {
+    setHeight(null)
+    setWeight(null)
     setTextButton("Calcular")
     setMessageImc("Preencha o peso e altura")
   }
@@ -38,19 +40,22 @@ export default Form = () => {
       <View style={styles.formContainer}>
         
         <Text style={styles.label}>Altura</Text>
-        <TextInput onChangeText={(value) => console.log(value) } style={styles.input} placeholder="Ex: 1.72" keyboardType="numeric"></TextInput>
+        <TextInput value={height} onChangeText={(value) => setHeight(value) } style={styles.input} placeholder="Ex: 1,72" keyboardType="numeric"></TextInput>
 
         <Text style={styles.label}>Peso</Text>
-        <TextInput style={styles.input} placeholder="Ex: 1.72" keyboardType="numeric"></TextInput>
+        <TextInput value={weight} onChangeText={(value) => setWeight(value)} style={styles.input} placeholder="Ex: 69,2" keyboardType="numeric"></TextInput>
+
+        <Button title="Limpar" onPress={clearInputs}/>
 
         <TouchableOpacity style={styles.buttonContainer} onPress={validateImc}>
           <Text style={styles.textButton}>{textButton}</Text>
         </TouchableOpacity>
         
+        
       </View>
 
       <View>
-        <ResultImc messageResultImc={messageImc} resultImc={imc}/>
+        <ResultImc messageResultImc={messageImc}/>
       </View>
       
     </View>
@@ -60,13 +65,15 @@ export default Form = () => {
 const styles = StyleSheet.create({
   container: {
     width: "70%",
+    flex: 1,
+    justifyContent: "center",
+    gap: 20
   },
 
   buttonContainer: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 20,
     padding: 20,
     backgroundColor: "#C4768B",
     borderRadius: 10,

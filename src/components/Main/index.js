@@ -12,8 +12,7 @@ export default Main = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    height: "65%",
+    height: "70%",
     width: "100%",
     backgroundColor: "#333",
     borderTopLeftRadius: 70,

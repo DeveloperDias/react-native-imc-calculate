@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native"
 
 export default styles = StyleSheet.create({
   container: {
-    width: "70%",
+    width: "80%",
     flex: 1,
     justifyContent: "center",
     gap: 20
@@ -10,28 +10,31 @@ export default styles = StyleSheet.create({
 
   buttonContainer: {
     display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    flexGrow: 1,
+    width: "auto",
     padding: 20,
-    backgroundColor: "#C4768B",
+    backgroundColor: "#0F9D58",
     borderRadius: 10,
   },
 
   textButton: {
+    textAlign: "center",
     textTransform: "uppercase",
     color: "#ffff",
     fontWeight: "bold",
-    fontSize: 20
+    fontSize: 20,
   },
 
   formContainer: {
     display: "flex",
-    gap: 15
+    gap: 20
   },
 
   label: {
-    fontWeight: "bold",
+    paddingBottom: 5,
+    fontWeight: "medium",
     fontSize: 20,
+    fontWeight: "bold",
     color: "#ffff"
   },
 
@@ -39,8 +42,7 @@ export default styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     borderRadius: 3,
-    width: "100%",
-    padding: 10,
+    padding: 15,
     backgroundColor: "#fff"
   }
 })

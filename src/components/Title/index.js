@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native"
 export default function Title() {
   return(
     <View>
-      <Text style={styles.text}>OneBitHealth</Text>
+      <Text style={styles.text}>OneBit<Text style={{color: "#6EB385"}}>Health</Text></Text>
     </View>
   )
 }

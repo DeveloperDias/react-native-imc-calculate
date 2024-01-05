@@ -44,5 +44,15 @@ export default styles = StyleSheet.create({
     borderRadius: 3,
     padding: 15,
     backgroundColor: "#fff"
+  },
+
+  messageImc: {
+    color: "#ffff",
+    fontWeight: "bold",
+    fontSize: 25,
+    textAlign: "center",
+    borderBottomWidth: 1,
+    paddingBottom: 20,
+    borderBottomColor: "#ffff"
   }
 })

@@ -1,14 +1,14 @@
 import React from "react";
 import { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Button, Vibration } from "react-native";
-import ResultImc from "./ResultIMC";
+import { View, Text, TextInput, TouchableOpacity, Vibration } from "react-native";
+
 import styles from "./styles";
 
 export default Form = () => {
 
   const [height, setHeight] = useState(null)
   const [weight, setWeight] = useState(null)
-  const [messageImc, setMessageImc] = useState("Type your height/weight")
+  const [messageImc, setMessageImc] = useState(null)
   const [imc, setImc] = useState(null)
   const [textButton, setTextButton] = useState("Calculate")
 
@@ -26,7 +26,7 @@ export default Form = () => {
     if (weight !== null && height !== null) {
       const actualImc = imcCalculate()
       setImc(actualImc)
-      setMessageImc(`Seu IMC é igual a ${actualImc}`)
+      setMessageImc(`Your IMC: ${actualImc}`)
       setTextButton("Try Again")
       setHeight(null)
       setWeight(null)
@@ -34,7 +34,7 @@ export default Form = () => {
       setImc(null)
       verificationImc()
       setTextButton("Calculate")
-      setMessageImc("Type your height/weight")
+      setMessageImc(null)
     }
   }
 
@@ -43,12 +43,16 @@ export default Form = () => {
     setHeight(null)
     setWeight(null)
     setTextButton("Calculate")
-    setMessageImc("Type your height/weight")
+    setMessageImc(null)
   }
 
   return(
     <View style={styles.container}>
       <View style={styles.formContainer}>
+
+      <View>
+        <Text style={styles.messageImc}>{messageImc ? messageImc : "IMC"}</Text>
+      </View>
         
         <View>
            <Text style={styles.label}>Height</Text>
@@ -72,10 +76,6 @@ export default Form = () => {
         </View>
         
         
-      </View>
-
-      <View>
-         <ResultImc messageResultImc={messageImc}/>
       </View>
       
     </View>

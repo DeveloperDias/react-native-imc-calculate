@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Vibration } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Vibration, Share } from "react-native";
 
 import styles from "./styles";
 
@@ -11,6 +11,13 @@ export default Form = () => {
   const [messageImc, setMessageImc] = useState(null)
   const [imc, setImc] = useState(null)
   const [textButton, setTextButton] = useState("Calculate")
+
+  const onShare = async () => {
+    const result = await Share.share({
+      message: `Meu IMC hoje é: ${imc}`
+    })
+  }
+  
 
   function imcCalculate() {
     return (weight / (height**2)).toFixed(2)
@@ -50,9 +57,18 @@ export default Form = () => {
     <View style={styles.container}>
       <View style={styles.formContainer}>
 
-      <View>
+      <View style={styles.messageImcContainer}>
         <Text style={styles.messageImc}>{messageImc ? messageImc : "IMC"}</Text>
+
+        {imc != null && <View>
+        <TouchableOpacity onPress={onShare} style={styles.shareButton}>
+          <Text style={styles.shareButtonText}>Share</Text>
+        </TouchableOpacity>
+      </View>}
+
       </View>
+
+      
         
         <View>
            <Text style={styles.label}>Height</Text>

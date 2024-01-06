@@ -1,12 +1,12 @@
 import React from "react";
 import Form from "../Form";
-import { View, StyleSheet } from "react-native";
+import { View, Pressable, Keyboard, StyleSheet } from "react-native";
 
 export default Main = () => {
   return(
-    <View style={styles.container}>
+    <Pressable onPress={Keyboard.dismiss} style={styles.container}>
       <Form/>
-    </View>
+    </Pressable>
   )
 }
 

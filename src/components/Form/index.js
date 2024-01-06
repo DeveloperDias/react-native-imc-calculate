@@ -13,14 +13,15 @@ export default Form = () => {
   const [textButton, setTextButton] = useState("Calculate")
 
   const onShare = async () => {
-    const result = await Share.share({
+    return await Share.share({
       message: `Meu IMC hoje é: ${imc}`
     })
   }
   
 
   function imcCalculate() {
-    return (weight / (height**2)).toFixed(2)
+    let heightFormat = height.replace(",",".")
+    return (weight / (heightFormat**2)).toFixed(2)
   }
 
   function verificationImc() {
@@ -58,7 +59,7 @@ export default Form = () => {
       <View style={styles.formContainer}>
 
       <View style={styles.messageImcContainer}>
-        <Text style={styles.messageImc}>{messageImc ? messageImc : "IMC"}</Text>
+        <Text style={styles.messageImc}>{messageImc ? messageImc : "IMC CALCULATOR"}</Text>
 
         {imc != null && <View>
         <TouchableOpacity onPress={onShare} style={styles.shareButton}>
